@@ -5,19 +5,22 @@ $rating-min-value: 0 !default;
 ///
 $rating-max-value: 5 !default;
 ///
-$rating-steps-value: .25 !default;
+$rating-steps-value: 0.25 !default;
 ///
-$rating-color-empty: '%23ddd' !default;
+$rating-color-empty: "%23ddd" !default;
 ///
 $rating-color-full: gold !default;
 ///
 $rating-color-hover: grey !default;
 /// This variable is a map containing the "d" attribute of each of the SVG icons
 $rating-icons-paths: (
-  quarter: 'M196.208 415.2v-224.8l-139.504 20.272 100.944 98.384-23.84 138.928z',
-  half: 'M258.672 64l-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6v-318.4z',
-  three-quarters: 'M321.616 190.496l-0.656-0.096-62.384-126.4-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6 63.024 33.136z',
-  full: 'M457.888 210.672l-139.504-20.272-62.384-126.4-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6 124.768 65.6-23.84-138.928c0 0 100.944-98.384 100.944-98.384z'
+  quarter: "M196.208 415.2v-224.8l-139.504 20.272 100.944 98.384-23.84 138.928z",
+  half:
+    "M258.672 64l-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6v-318.4z",
+  three-quarters:
+    "M321.616 190.496l-0.656-0.096-62.384-126.4-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6 63.024 33.136z",
+  full:
+    "M457.888 210.672l-139.504-20.272-62.384-126.4-62.384 126.4-139.504 20.272 100.944 98.384-23.84 138.928 124.768-65.6 124.768 65.6-23.84-138.928c0 0 100.944-98.384 100.944-98.384z",
 );
 
 /// Creates a dynamic list of values that increment each .25 from 0 to 5
@@ -25,9 +28,12 @@ $rating-icons-paths: (
 @function rating-values() {
   $rating-values: ();
 
-  @for $i from $rating-min-value through ($rating-max-value / $rating-steps-value) {
+  @for $i
+    from $rating-min-value
+    through ($rating-max-value / $rating-steps-value)
+  {
     $rating-value: abs($i * $rating-steps-value);
-    $rating-values: append($rating-values, $rating-value, 'comma');
+    $rating-values: append($rating-values, $rating-value, "comma");
   }
 
   @return $rating-values;
@@ -41,8 +47,12 @@ $rating-icons-paths: (
   @if not index(quarter half three-quarters full, $icon) {
     @error "Interaction type must be either `quarter`, `half`, `three-quarters` or `full`.";
   }
-  
-  @return url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22' + $color + '%22%20d%3D%22' + map-get($rating-icons-paths, $icon) + '%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') center / cover no-repeat;
+
+  @return url("data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22" + $color + "%22%20d%3D%22" + map-get(
+        $rating-icons-paths,
+        $icon
+      ) + "%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+    center / cover no-repeat;
 }
 
 /// This is a CSS-only star rating component that shows the proper rating depending on a data-attribute value. JS logic behind this component should round up values per quarter.
@@ -61,11 +71,15 @@ $rating-icons-paths: (
 ///     <span>4</span>
 ///     <span>5</span>
 ///   </div>
-@mixin c-rating($star-size: 20px, $star-element: button, $interaction-type: representative) {
+@mixin c-rating(
+  $star-size: 20px,
+  $star-element: button,
+  $interaction-type: representative
+) {
   @if not index(clickable representative, $interaction-type) {
     @error "Interaction type must be either `clickable` or `representative`.";
   }
-  
+
   #{$star-element} {
     display: inline-block;
     float: left;
@@ -75,28 +89,28 @@ $rating-icons-paths: (
     text-indent: -9999px;
     outline: none;
     background: get-icon(full, $rating-color-empty);
-
   }
-  
-@each $rating-value in rating-values() {
+
+  @each $rating-value in rating-values() {
     // Get the next higher integer.
     $rating-value-ceil: ceil($rating-value);
 
     &[data-rating-value="#{$rating-value}"] {
-      #{$star-element}:nth-child(-n+#{$rating-value-ceil}) {
+      #{$star-element}:nth-child(-n + #{$rating-value-ceil}) {
         background: get-icon(full, $rating-color-full);
       }
 
       #{$star-element}:nth-child(#{$rating-value-ceil}) {
         // Evaluate which fraction of a star this value is and add the proper background
-        @if str-slice("#{$rating-value}", 2, 4) == '.25' {
-          background: get-icon(quarter, $rating-color-full), get-icon(full, $rating-color-empty)
-        }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.5' {
-          background: get-icon(half, $rating-color-full), get-icon(full, $rating-color-empty)
-        }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.75' {
-          background: get-icon(three-quarters, $rating-color-full), get-icon(full, $rating-color-empty)
+        @if str-slice("#{$rating-value}", 2, 4) == ".25" {
+          background: get-icon(quarter, $rating-color-full),
+            get-icon(full, $rating-color-empty);
+        } @else if str-slice("#{$rating-value}", 2, 4) == ".5" {
+          background: get-icon(half, $rating-color-full),
+            get-icon(full, $rating-color-empty);
+        } @else if str-slice("#{$rating-value}", 2, 4) == ".75" {
+          background: get-icon(three-quarters, $rating-color-full),
+            get-icon(full, $rating-color-empty);
         }
       }
     }
@@ -109,12 +123,11 @@ $rating-icons-paths: (
 /// @return {em} value
 @function toem($target, $context: 16px) {
   @if $target == 0 {
-    @return 0
+    @return 0;
   }
 
-  @return $target / $context+0em;
+  @return $target / $context + 0em;
 }
-
 
 .rating-holder {
   font-size: 16px;
@@ -126,11 +139,11 @@ $rating-icons-paths: (
 
 .c-rating {
   @include c-rating(toem(20px), button, clickable);
-  
+
   &--small {
-    font-size: 50%
+    font-size: 50%;
   }
-  
+
   &--big {
     font-size: 150%;
   }

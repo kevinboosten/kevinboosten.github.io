@@ -9,6 +9,28 @@
 
     <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png" />
 
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ site.baseurl }}/assets/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ site.baseurl }}/assets/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ site.baseurl }}/favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="{{ site.baseurl }}/assets/images/site.webmanifest"
+    />
+
     <title>{{ page.title }} | {{site.name}}</title>
 
     {% seo %}
@@ -63,9 +85,7 @@
       />
       <link
         rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-        crossorigin="anonymous"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
       />
     </noscript>
 
@@ -104,7 +124,7 @@
 
             <li class="nav-item">
               {% endif %}
-              <a class="nav-link" href="{{ site.baseurl }}/index.html">Blog</a>
+              <!-- <a class="nav-link" href="{{ site.baseurl }}/">Home</a> -->
             </li>
 
             <li class="nav-item">
@@ -115,37 +135,27 @@
               <a
                 target="_blank"
                 class="nav-link"
-                href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"
-              >
-                Docs</a
-              >
+                href="{{ site.authors['kevin'].github }} "
+                ><i class="fab fa-github"></i
+              ></a>
             </li>
 
             <li class="nav-item">
               <a
                 target="_blank"
                 class="nav-link"
-                href="https://www.wowthemes.net/themes/mediumish-wordpress/"
-                ><i class="fab fa-wordpress-simple"></i> WP Version</a
-              >
+                href="{{ site.authors['kevin'].twitter }} "
+                ><i class="fab fa-twitter"></i
+              ></a>
             </li>
 
             <li class="nav-item">
               <a
                 target="_blank"
                 class="nav-link"
-                href="https://www.wowthemes.net/themes/mediumish-ghost/"
-                ><i class="fab fa-snapchat-ghost"></i> Ghost Version</a
-              >
-            </li>
-
-            <li class="nav-item">
-              <a
-                target="_blank"
-                class="nav-link"
-                href="https://github.com/wowthemesnet/mediumish-theme-jekyll"
-                ><i class="fab fa-github"></i> Fork on Github</a
-              >
+                href="{{ site.authors['kevin'].devto }} "
+                ><i class="fab fa-dev"></i
+              ></a>
             </li>
 
             {% include search-lunr.html %}
@@ -221,7 +231,7 @@
 
       <!-- Categories Jumbotron
 ================================================== -->
-      <div class="jumbotron fortags">
+      <!-- <div class="jumbotron fortags">
         <div class="d-md-flex h-100">
           <div class="col-md-4 transpdark align-self-center text-center h-100">
             <div
@@ -250,7 +260,7 @@
             {% endfor %} {% endif %} {% assign categories_list = nil %}
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Begin Footer
 ================================================== -->
@@ -259,14 +269,6 @@
           <div class="row">
             <div class="col-md-6 col-sm-6 text-center text-lg-left">
               Copyright © {{ site.time | date: "%Y" }} {{ site.name }}
-            </div>
-            <div class="col-md-6 col-sm-6 text-center text-lg-right">
-              <a
-                target="_blank"
-                href="https://www.wowthemes.net/mediumish-free-jekyll-template/"
-                >Mediumish Jekyll Theme</a
-              >
-              by WowThemes.net
             </div>
           </div>
         </div>
