@@ -1,7 +1,7 @@
 # Site
 name: "kevinboosten.dev"
 title: "Kevin Boosten Blog"
-description: "Just writing about software development"
+description: "Just writing about front-end development"
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: ''
