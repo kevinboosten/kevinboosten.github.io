@@ -1,18 +1,18 @@
 ---
 layout: post
-title: "Build and release your Ionic + Capacitor app via Microsoft AppCenter"
+title: "Build and release your Ionic + Capacitor app via Microsoft App Center"
 author: kevin
 categories: ["mobile"]
-tags: ["AppCenter", "Microsoft", "Ionic", "Capacitor", "CI/CD"]
+tags: ["App Center", "Microsoft", "Ionic", "Capacitor", "CI/CD"]
 image: assets/images/posts/2020-05-06/2020-05-06.png
-description: "Building and deploying mobile applications can be challenging. Now Capacitor became the preferred way to access your native SDK's, building apps with AppCenter became a lot easier!"
+description: "Building and deploying mobile applications can be challenging. Now Capacitor became the preferred way to access your native SDK's, building apps with App Center became a lot easier!"
 featured: false
 comments: true
 toc: true
 ---
 
 Building and deploying mobile applications can be challenging.
-I like developing mobile applications for iOS and Android. My framework of choice to do this is [Ionic](https://ionicframework.com/)! Now Capacitor became the preferred way to access your native SDK's in your hybrid app, building apps with AppCenter became a lot easier!
+I like developing mobile applications for iOS and Android. My framework of choice to do this is [Ionic](https://ionicframework.com/)! Now Capacitor became the preferred way to access your native SDK's in your hybrid app, building apps with App Center became a lot easier!
 
 If you're building a hybrid application with [Ionic](https://ionicframework.com/), you probably are using [Capacitor](https://capacitor.ionicframework.com/) as your native bridge to get access to API's like your camera, push notifications and others. If you're not using it yet then you should definitely give it a try!
 
@@ -20,21 +20,21 @@ If you're building a hybrid application with [Ionic](https://ionicframework.com/
 
 Check out the [Capacitor docs](https://capacitor.ionicframework.com/docs/) for a brief introduction!
 
-## AppCenter
+## App Center
 
-Visual Studio AppCenter is a Microsoft product for continuously build, test, release and monitor your apps. In this article we're only going to focus on the building part of AppCenter.
-AppCenter supports a variety of operating systems: iOS, Android, Windows, MacOS and even tvOS. The platforms, besides the native ones, that are available are: React Native, Cordova (preview), Xamarin and Unity. Enough to cover your needs, I guess!
+Visual Studio App Center is a Microsoft product for continuously build, test, release and monitor your apps. In this article we're only going to focus on the building part of App Center.
+App Center supports a variety of operating systems: iOS, Android, Windows, MacOS and even tvOS. The platforms, besides the native ones, that are available are: React Native, Cordova (preview), Xamarin and Unity. Enough to cover your needs, I guess!
 
 ### Ionic AppFlow
 
 Of course there'r e alternatives to build you mobile application. If you're primarily building Ionic applications then [Ionic AppFlow](https://ionicframework.com/appflow) will maybe be the better choice for you. They also have got 'Publishing to Store' functionality since a couple of months!
-But if you're working in a company that also builds Xamarin and React Native apps, then AppCenter makes more sense.
+But if you're working in a company that also builds Xamarin and React Native apps, then App Center makes more sense.
 
 ## Create a test app
 
 > Skip this section if you already have an Ionic+Capacitor app
 
-So let's start with creating a Ionic + Capacitor app so we can use that as our app that we're going to use in AppCenter.
+So let's start with creating a Ionic + Capacitor app so we can use that as our app that we're going to use in App Center.
 
 You can also fork this demo application from [GitHub](https://github.com/Boosten/ionic-capacitor-appcenter-demo).
 
@@ -74,11 +74,11 @@ npx cap add android
 
 Push your changes to a (private) repository and you are good to go!
 
-## Configuring AppCenter
+## Configuring App Center
 
-We're now going to create an app in AppCenter and connect it to our repository.
+We're now going to create an app in App Center and connect it to our repository.
 
-1. Go to AppCenter to create a new application: <https://appcenter.ms/apps>
+1. Go to App Center to create a new application: <https://appcenter.ms/apps>
    ![img](/assets/images/posts/2020-05-06/1.png)
 
 1. Enter a name for your application, select iOS en choose a release type. The release type is just a label and it does not have any affect on your build.
@@ -110,6 +110,7 @@ We're now going to create an app in AppCenter and connect it to our repository.
    ![img](/assets/images/posts/2020-05-06/8.png)
 
 1. And here comes the 'trick' 💡!
+   App Center supports several build scripts that run at pre-defined stages: `post-clone`, `pre-build` and `post-build`. That's exactly what we need to build our hybrid application with App Center! We're going to use the post-clone script in order to perform some steps that are required to build our app.
    Let's add a file `appcenter-post-clone.sh` to the iOS (_ios/App/appcenter-post-clone.sh_) and Android (_android/app/appcenter-post-clone.sh_) projects.
 
    ```bash
@@ -142,7 +143,7 @@ We're now going to create an app in AppCenter and connect it to our repository.
    npx cap sync
    ```
 
-   The first couple of lines are just to override the default NodeJS version that AppCenter is using.
+   The first couple of lines are just to override the default NodeJS version that App Center is using.
    After that, we're installing our npm dependencies, running an production build and finally invoking a Capacitor specific command to sync the projects.
 
    Go back to the configuration and be sure to click on "Save & Build" button to let App Center know that new build specific files need to be indexed.
