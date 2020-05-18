@@ -11,8 +11,6 @@ comments: true
 toc: true
 ---
 
-## Introduction
-
 Angular has the concept of environment files that can be used to configure environment specific values. There are multiple ways to handle environments in your Angular web application.
 
 1. Create an environment specific `.ts` file and rebuild the complete application per environment. (e.g. `environment.ts`, `environment.tst.ts`, `environment.stg.ts`, `environment.prd.ts`). This works, but has the drawback that we need to rebuild the complete application when we go from staging to production. I don't think we want that.
