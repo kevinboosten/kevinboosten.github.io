@@ -233,10 +233,17 @@ But first, don't forget to commit and push your changes.
 ### Use environment variables in your code
 
 If we do not use these variables in our code, tree shaking will remove the code from the build. So that would not be very useful for this tutorial.
-So add this line of code to your `app.componen.ts` file:
+So add this line of code to your `app.component.ts` file:
 
 ```typescript
-title = `is production: ${environment.production}, auth: ${environment.auth.clientID} - ${environment.auth.domain}, api: ${environment.apiEndpoint}`;
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"],
+})
+export class AppComponent {
+  title = `is production: ${environment.production}, auth: ${environment.auth.clientID} - ${environment.auth.domain}, api: ${environment.apiEndpoint}`;
+}
 ```
 
 ### Add Azure DevOps extension
@@ -377,7 +384,6 @@ This gives you a bit more control about your pipeline. You can even introduce ma
 
 ## Conclusion
 
-Building and deploying Angular applications doesn't need to be very complex if we're talking about environments. I showed you how to utilize the Angular environment files properly in a Azure DevOps multi-stage yml release pipeline without the need to rebuild the application for every environment.
-And we did not introduce any extra start up complexity to our application. So no need to load our app configuration via the APP_INITIALIZER and delaying the actual start up of our web app. Just use the already provided environment files properly, and you're good to deploy with confidence!
+Building and deploying Angular applications doesn't need to be very complex if we're talking about environments. I showed you how to utilize the Angular environment files properly in a Azure DevOps multi-stage yml release pipeline without the need to rebuild the application for every environment. And we did not introduce any extra start up complexity to our application. So no need to load our app configuration via the APP_INITIALIZER and delaying the actual start up of our web app. Just use the already provided environment files properly, `environment.ts` for local development and `environment.prod.ts` for production, and you're good to deploy with confidence!
 
 What approach are you using at this moment?
