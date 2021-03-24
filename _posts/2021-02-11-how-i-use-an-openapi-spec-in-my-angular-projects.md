@@ -5,13 +5,13 @@ author: kevin
 categories: ['api', 'angular']
 tags: ['api', 'Angular']
 image: assets/images/posts/2021-02-11/2021-02-11.png
-description: 'If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a stubbed server for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.'
+description: 'If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.'
 featured: false
 comments: true
 toc: true
 ---
 
-If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a stubbed server for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.
+If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.
 Let me show you how I use OpenAPI to boost up my productivity!
 
 Here is a brief introduction if you're not familiar with [OpenAPI](https://swagger.io/specification/) in general:
@@ -22,7 +22,7 @@ Or maybe you know [Swagger](https://swagger.io/), so what's the difference? Chec
 
 ## OpenAPI Generator
 
-So your backend colleague gave you the endpoint of their API so you can start integrating your web application with some real data. So what will be your next step? You're quite a Typescript enthousiast and want to make sure that your web application has some type safety, so you start typing out some TS interfaces that we can use. Okay, check ✅.
+So your backend colleague gave you the endpoint of their api so you can start integrating your web application with some real data. So what will be your next step? You're quite a Typescript enthousiast and want to make sure that your web application has some type safety, so you start typing out some TS interfaces that we can use. Okay, check ✅.
 Next step? Maybe add some abstraction and reusability to your stack? So you create an Angular Service that uses the [HttpClient](https://angular.io/api/common/http/HttpClient) and so wraps the actual endpoint.
 Sounds good and eventually this will be a good approach. But it feels a bit repetitive to do this for every project again. Besides that, I think you can spend your time better on building actual features for your application, right?
 
@@ -51,7 +51,7 @@ Start the application to verify everything went well:
 
 ### Create an OpenAPI yaml file
 
-A well defined API comes with some documentation. An api built with OpenAPI comes with a yaml, or JSON, spec that describes the actual api. We can build this spec by creating a yaml file in our application.
+A well defined api comes with some documentation. An api built with OpenAPI comes with a yaml, or JSON, spec that describes the actual api. We can build this spec by creating a yaml file in our application.
 In order to have a real working api, we will use the well known [JSON Placeholder](https://jsonplaceholder.typicode.com/) public test api.
 
 Add a file `openapi.yaml` to the root of your application and add the following content:
@@ -138,7 +138,7 @@ Add a npm script to your `package.json` file for more convenient usage:
 }
 ```
 
-We use the default configuration ('additional-properties') over here. But you can customize this based on your needs.
+We use the default configuration over here. But you can customize this based on your needs.
 
 One example could be the option `removeOperationIdPrefix` to prevent redundant method names.
 Take for example the following operationId in your spec:
@@ -168,6 +168,8 @@ export class PostsService {
   public getPosts() {}
 }
 ```
+
+That already looks better to me! As I said, there're plenty configuration options. And you probably will be using some of them from time to time depending on the spec you receive.
 
 Next step is to actually generate our code with our custom NPM script:
 
@@ -335,14 +337,94 @@ Your browser should now show you a list of Posts from JsonPlaceholder:
 
 ### Next steps
 
-In this example I'm generating and putting my code in my project's repository. That's fine for most of my projects because we're using monorepo's and also using client specific API's.
-Another approach would be to publish your generated code as a NPM package that can be installed by others. These steps are also described by the OpenAPI generator itself in the [README](https://github.com/Boosten/angular-openapi-demo/blob/master/src/app/core/api/v1/README.md). So it depends on your needs which approach fits better.
+In this example I'm generating and putting my code in my project's repository. That's fine for most of my projects because we're using monorepo's and also using client specific api's.
+Another approach could be to publish your generated code as a NPM package that can be installed by others. These steps are also described by the OpenAPI generator itself in the [README](https://github.com/Boosten/angular-openapi-demo/blob/master/src/app/core/api/v1/README.md). So it depends on your needs which approach fits better.
 
 ## Simulator
 
-<https://github.com/anttiviljami/openapi-backend>
+Now that we've our Angular services generated, let's have a look how wo can utilize the OpenAPI spec even better in our front-end application stack!
+What we're going to use for this is the package: [OpenAPI backend](https://github.com/anttiviljami/openapi-backend).
+
+> _OpenAPI Backend is a Framework-agnostic middleware tool for building beautiful APIs with OpenAPI Specification._
+
+OpenAPI backend has a couple of useful features, but the feature that we're going to use is the auto-mocking responses behavior.
+
+### Install openapi-backend
+
+Create a directory where our simulator will live and go to the directory:
+
+```bash
+  mkdir simulator
+  cd simulator
+```
+
+Initialize a new npm project to generate a `package.json` file:
+
+```bash
+  npm init -y # -y will answer the questions with yes
+```
+
+Install the required dependencies:
+
+```bash
+  npm i openapi-backend # the actual dependency we need :-)
+  npm i typescript -D # we will be using Typescript, so transpilation needs to be done
+  npm i express # To serve our simulated endpoints
+  npm i --save-dev @types/express # typescript types for express
+```
+
+As you see we're using Typescript. We need a `tsconfig.json` file, you can initialize this:
+We use the locally installed typescript compiler. If you've `tsc` installed globally, you can use that of course.
+
+```bash
+  node_modules/.bin/tsc --init
+```
+
+Open the `tsconfig.json` file and configure the output directory. Your file should look like this:
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "outDir": "./dist", /* Redirect output structure to the directory. */
+    "strict": true, /* Enable all strict type-checking options. */
+    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "skipLibCheck": true, /* Skip type checking of declaration files. */
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+}
+```
+
+We're almost there. Update the npm scripts in your `package.json` so we can build and run our simulator. Your `package.json` should now look like this:
+
+```json
+{
+  "name": "simulator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "openapi-backend": "^3.9.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "typescript": "^4.2.3"
+  }
+}
+```
+
+Now run `npm start` in your `simulator` directory and open your browser on <http://localhost:9000/posts> to see some `Pets`🚀!
 
 - Explain how to use the api as a simulator
+
+- example <https://github.com/anttiviljami/openapi-backend/tree/master/examples/express-typescript>
 
 - notice the example data in the spec, this is key for getting a out of the box simulator
   <!-- OpenAPI Example Data in your spec -->
@@ -354,4 +436,6 @@ Another approach would be to publish your generated code as a NPM package that c
 
   - how can we benefit the simulator in our Angular Application
     - dev setup/speedup development
+      - environment.ts files
+      - package.json scripts with `--prefix simulator` and `npm run all` command
     - Testing with Cypress - call it integration testing (non persistent!)
