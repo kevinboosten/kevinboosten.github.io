@@ -572,7 +572,7 @@ Check the docs for more info:
 
 ## Conclusion
 
-The OpenAPI spec is already very helpful to describe your api's. I've showed you how I utilize this spec to generate code in our Angular application and generate a simulator that we can use for development purposes.
+The OpenAPI spec is already very helpful to describe your api's. I showed you how I utilize this spec to generate code in our Angular application and generate a simulator that we can use for development purposes.
 What I did not describe is how I use this same simulator to act as a api for my integration tests that I run with [Cypress](https://www.cypress.io/). Another great use-case for your OpenAPI spec!
 
 So, what else could you do with it? Let me know!
