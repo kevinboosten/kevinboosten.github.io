@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "How to use Angular environment files in your Azure DevOps multi-stage yml release pipeline"
+title: 'How to use Angular environment files in your Azure DevOps multi-stage yml release pipeline'
 author: kevin
-categories: ["ci/cd", "angular"]
-tags: ["Azure DevOps", "Microsoft", "Angular", "CI/CD"]
+categories: ['ci/cd', 'angular']
+tags: ['Azure DevOps', 'Microsoft', 'Angular', 'CI/CD']
 image: assets/images/posts/2020-05-16/2020-05-16.png
-description: "Angular has the concept of environment files that can be used to configure environment specific values. There are multiple ways to handle environments in your Angular web application. I show you how to do this in a Azure DevOps multi-stage yml pipeline."
+description: 'Angular has the concept of environment files that can be used to configure environment specific values. There are multiple ways to handle environments in your Angular web application. I show you how to do this in a Azure DevOps multi-stage yml pipeline.'
 featured: false
 comments: true
 toc: true
@@ -16,7 +16,7 @@ Angular has the concept of environment files that can be used to configure envir
 1. Create an environment specific `.ts` file and rebuild the complete application per environment. (e.g. `environment.ts`, `environment.tst.ts`, `environment.stg.ts`, `environment.prd.ts`). This works, but has the drawback that we need to rebuild the complete application when we go from staging to production. I don't think we want that.
 2. Put your environment settings in a config.json file in your assets directory and request this file at runtime via the HttpClient during the start up. You could use the APP_INITIALIZER to make sure the environment settings are available before your application code is executed.
 
-   There're already enough articles about this approach. But it introduces extra code and start up dependencies because we've to wait for the config.json file to load over http. Of course this is negligible if we compare it to all the other files, but still it's another request the browser has to make.
+   There are already enough articles about this approach. But it introduces extra code and start up dependencies because we've to wait for the config.json file to load over http. Of course this is negligible if we compare it to all the other files, but still it's another request the browser has to make.
 
 3. Or....just use the default environment files and make use of replacement tokens!
 
@@ -49,11 +49,11 @@ trigger:
   - master
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 steps:
   - script: echo Hello, world!
-    displayName: "Run a one-line script"
+    displayName: 'Run a one-line script'
 ```
 
 For this demo I'm starting from the portal:
@@ -91,7 +91,7 @@ trigger:
   - master
 
 pool:
-  vmImage: "ubuntu-latest"
+  vmImage: 'ubuntu-latest'
 
 stages:
   - stage: build
@@ -139,7 +139,7 @@ stages:
         steps:
           - task: NodeTool@0
             inputs:
-              versionSpec: "10.x"
+              versionSpec: '10.x'
           - script: npm install
           - script: npm run build -- --prod
           - publish: dist
@@ -208,10 +208,10 @@ At this moment our `environment.ts` and `environment.prod.ts` files don't contai
 export const environment = {
   production: false,
   auth: {
-    clientID: "my-local-clientid",
-    domain: "local.eu.auth0.com",
+    clientID: 'my-local-clientid',
+    domain: 'local.eu.auth0.com',
   },
-  apiEndpoint: "https://local.myapi.io",
+  apiEndpoint: 'https://local.myapi.io',
 };
 ```
 
@@ -220,10 +220,10 @@ export const environment = {
 export const environment = {
   production: true,
   auth: {
-    clientID: "#{authClientID}#",
-    domain: "#{authDomain}#",
+    clientID: '#{authClientID}#',
+    domain: '#{authDomain}#',
   },
-  apiEndpoint: "#{apiEndpoint}#",
+  apiEndpoint: '#{apiEndpoint}#',
 };
 ```
 
@@ -237,9 +237,9 @@ So add this line of code to your `app.component.ts` file:
 
 ```typescript
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = `is production: ${environment.production}, auth: ${environment.auth.clientID} - ${environment.auth.domain}, api: ${environment.apiEndpoint}`;
@@ -307,14 +307,14 @@ Now add the replace tokens extension as step to each deployment stage. Make sure
               - script: echo Hello, development world!
               - task: replacetokens@3
                 inputs:
-                  targetFiles: "$(Pipeline.Workspace)/dist/**/main*.js"
-                  encoding: "auto"
+                  targetFiles: '$(Pipeline.Workspace)/dist/**/main*.js'
+                  encoding: 'auto'
                   writeBOM: true
-                  verbosity: "detailed"
-                  actionOnMissing: "warn"
+                  verbosity: 'detailed'
+                  actionOnMissing: 'warn'
                   keepToken: false
-                  tokenPrefix: "#{"
-                  tokenSuffix: "}#"
+                  tokenPrefix: '#{'
+                  tokenSuffix: '}#'
                   useLegacyPattern: false
                   enableTelemetry: true
 
@@ -332,14 +332,14 @@ Now add the replace tokens extension as step to each deployment stage. Make sure
               - script: echo Hello, production world!
               - task: replacetokens@3
                 inputs:
-                  targetFiles: "$(Pipeline.Workspace)/dist/**/main*.js"
-                  encoding: "auto"
+                  targetFiles: '$(Pipeline.Workspace)/dist/**/main*.js'
+                  encoding: 'auto'
                   writeBOM: true
-                  verbosity: "detailed"
-                  actionOnMissing: "warn"
+                  verbosity: 'detailed'
+                  actionOnMissing: 'warn'
                   keepToken: false
-                  tokenPrefix: "#{"
-                  tokenSuffix: "}#"
+                  tokenPrefix: '#{'
+                  tokenSuffix: '}#'
                   useLegacyPattern: false
                   enableTelemetry: true
 ```

@@ -51,7 +51,7 @@ Start the application to verify everything went well:
 
 ### Create an OpenAPI yaml file
 
-A well defined api comes with some documentation. An api built with OpenAPI comes with a yaml, or JSON, spec that describes the actual api. We can build this spec by creating a yaml file in our application.
+A well defined api comes with some documentation. An api built with OpenAPI comes with a yaml, or JSON, spec that describes the actual api. We can build this spec by creating a yaml file in our application. As I said before, you probably will receive this spec from your backend developer. But we will be creating our own for this tutorial.
 In order to have a real working api, we will use the well known [JSON Placeholder](https://jsonplaceholder.typicode.com/) public test api.
 
 Add a file `openapi.yaml` to the root of your application and add the following content:
@@ -112,10 +112,11 @@ components:
 I think that this kind of documenting is quite self explanatory, but let's discuss a couple of things:
 
 - `Post`: this is a way of defining a model. We can use this model by using the [$ref](https://swagger.io/docs/specification/using-ref/) keyword.
-- `servers`: here we define one or more base url's for our spec.
+- `servers`: here we define one or more base URLs for our spec.
 - `example`: give a hint about what value to expect. Later on I will explain you why this is handy when creating a simulator.
 
 > Tip! Make working with OpenApi spec easier in VSCode by installing the [Swagger Viewer extension](https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer)
+> Curious about what the Openapi spec has to offer? Check out the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md)
 
 ### Generate Angular Services
 
@@ -169,7 +170,7 @@ export class PostsService {
 }
 ```
 
-That already looks better to me! As I said, there're plenty configuration options. And you probably will be using some of them from time to time depending on the spec you receive.
+That already looks better to me! As I said, there are plenty configuration options. And you probably will be using some of them from time to time depending on the spec you receive.
 
 Next step is to actually generate our code with our custom NPM script:
 
@@ -337,7 +338,7 @@ Your browser should now show you a list of `Posts` from JsonPlaceholder:
 
 ### Next steps
 
-In this example I'm generating and putting my code in my project's repository. That's fine for most of my projects because we're using monorepo's and also using client specific api's.
+In this example I'm generating and putting my code in my project's repository. That's fine for most of my projects because we're using monorepos and also using client specific api's.
 Another approach could be to publish your generated code as a NPM package that can be installed by others. These steps are also described by the OpenAPI generator itself in the [README](https://github.com/Boosten/angular-openapi-demo/blob/master/src/app/core/api/v1/README.md). So it depends on your needs which approach fits better.
 
 ## Simulator
