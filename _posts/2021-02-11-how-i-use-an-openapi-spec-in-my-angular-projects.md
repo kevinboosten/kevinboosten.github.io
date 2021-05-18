@@ -26,7 +26,7 @@ So your backend colleague gave you the endpoint of their api so you can start in
 Next step? Maybe add some abstraction and reusability to your stack? So you create an Angular Service that uses the [HttpClient](https://angular.io/api/common/http/HttpClient) and so wraps the actual endpoint.
 Sounds good and eventually this will be a good approach. But it feels a bit repetitive to do this for every project again. Besides that, I think you can spend your time better on building actual features for your application, right?
 
-So what if we could automate these steps to safe some precious time 🧐? In a few steps we can generate Angular specific code based on our OpenAPI spec. Let's get started 👨‍💻!
+So what if we could automate these steps to save some precious time 🧐? In a few steps we can generate Angular specific code based on our OpenAPI spec. Let's get started 👨‍💻!
 
 ### Create Angular app
 
@@ -116,11 +116,12 @@ I think that this kind of documenting is quite self explanatory, but let's discu
 - `example`: give a hint about what value to expect. Later on I will explain you why this is handy when creating a simulator.
 
 > Tip! Make working with OpenApi spec easier in VSCode by installing the [Swagger Viewer extension](https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer)
-> Curious about what the Openapi spec has to offer? Check out the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md)
+
+> Curious about what the OpenApi spec has to offer? Check out the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md)
 
 ### Generate Angular Services
 
-We're going to generate our Angular code with the CLI of [openapi-generator](https://github.com/OpenAPITools/openapi-generator-cli). We can install this via NPM as devDependency:
+We're going to generate our Angular code with the CLI of [openapi-generator](https://github.com/OpenAPITools/openapi-generator-cli). We can install this via npm as devDependency:
 
 ```bash
   npm i @openapitools/openapi-generator-cli -D
@@ -170,9 +171,9 @@ export class PostsService {
 }
 ```
 
-That already looks better to me! As I said, there are plenty configuration options. And you probably will be using some of them from time to time depending on the spec you receive.
+That already looks better to me! As I said, there are plenty of configuration options. And you probably will be using some of them from time to time depending on the spec you receive.
 
-Next step is to actually generate our code with our custom NPM script:
+Next step is to actually generate our code with our custom npm script:
 
 ```bash
   npm run generate:api
@@ -339,25 +340,25 @@ Your browser should now show you a list of `Posts` from JsonPlaceholder:
 ### Next steps
 
 In this example I'm generating and putting my code in my project's repository. That's fine for most of my projects because we're using monorepos and also using client specific api's.
-Another approach could be to publish your generated code as a NPM package that can be installed by others. These steps are also described by the OpenAPI generator itself in the [README](https://github.com/Boosten/angular-openapi-demo/blob/master/src/app/core/api/v1/README.md). So it depends on your needs which approach fits better.
+Another approach could be to publish your generated code as a npm package that can be installed by others. These steps are also described by the OpenAPI generator itself in the [README](https://github.com/Boosten/angular-openapi-demo/blob/master/src/app/core/api/v1/README.md). So it depends on your needs which approach fits better.
 
 ## Simulator
 
-Now that we've our Angular services generated, let's have a look how wo can utilize the OpenAPI spec even better in our front-end application stack!
-What we're going to use for this is a great package called: [OpenAPI backend](https://github.com/anttiviljami/openapi-backend) from [Viljami Kuosmanen](https://github.com/anttiviljami).
+Now that we've our Angular services generated, let's have a look at how we can utilize the OpenAPI spec even better in our front-end application stack!
+What we're going to use for this is a great package called: [OpenAPI Backend](https://github.com/anttiviljami/openapi-backend) from [Viljami Kuosmanen](https://github.com/anttiviljami).
 
 As Viljami describes it in one sentence:
 
 > _OpenAPI Backend is a Framework-agnostic middleware tool for building beautiful APIs with OpenAPI Specification._
 
-OpenAPI backend has a couple of useful features, but the feature that we're going to use is the [auto-mocking responses](https://github.com/anttiviljami/openapi-backend#mocking-api-responses) behavior.
+OpenAPI Backend has a couple of useful features, but the feature that we're going to use is the [auto-mocking responses](https://github.com/anttiviljami/openapi-backend#mocking-api-responses) behavior.
 
 ### Setting up simulator project
 
 The simulator project will be a independent project but within your current directory structure and so it will also be part of your git repo. So actually we're going to create a monorepo: a single repository that contains all our code. I'm an advocate when it comes down to monorepos. If you want to learn more about useful tooling around monorepos, then you certainly should check out the following tools:
 
-- [Lerna](https://lerna.js.org/) - easy to use, quick to set up
-- [NX.dev](https://nx.dev/) - managing monorepos like a pro 😉
+- [Lerna](https://lerna.js.org/) - easy to use, quick to set up.
+- [NX.dev](https://nx.dev/) - managing monorepos like a pro 😉.
 
 I'm not going to use any of these tools for the sake of this tutorial.
 
@@ -385,7 +386,7 @@ Install the required dependencies:
   npm i @types/cors
 ```
 
-As you see we're using Typescript. We need a `tsconfig.json` file, you can initialize this with the following command:
+As you can see we're using Typescript. We need a `tsconfig.json` file, which you can initialize with the following command:
 
 ```bash
   npx tsc --init
@@ -503,7 +504,7 @@ Our Angular application is now running against a local simulator!
 
 ### Enhancing DX (Developer Experience)
 
-Angular applications already utilizing the `npm start` command to eventually run `ng serve`. We need to make some adjustmenst in order to start our Angular application and simultanously start our simulator.
+Angular applications already uses the `npm start` command to eventually run `ng serve`. We need to make some adjustmenst in order to start our Angular application and simultanously start our simulator.
 I really appreciate it, and actually expect it, when I only have to run two commands to start the project: `npm i && npm start`. Why? Nobody wants to have some superfluous starter doc that you need to read, handle mentally and do all kinds of set up tasks. To give your project a first good impression it should be ready to use within seconds!
 I'm not saying you should not have a `README.md` file, the opposite! The README file could describe other helpful information that your reader should know (e.g. different configurations).
 
@@ -522,7 +523,7 @@ Install it as a `devDependency` in the root of our project:
 npm install npm-run-all --save-dev
 ```
 
-Now open the `package.json` of our root project and alter the `scripts` section it like this by adding two scripts and changing the `start` script:
+Now open the `package.json` of our root project and alter the `scripts` section and make it like this by adding two scripts and changing the `start` script:
 
 ```json
 "start": "npm-run-all --parallel start:app start:simulator",
@@ -533,15 +534,15 @@ Now open the `package.json` of our root project and alter the `scripts` section 
 I guess the scripts do explain themselves, but here's a brief description:
 
 - `start` will now use the `npm-run-all` package to run two other npm scripts. The `--parallel` flag will run them in parallel.
-- `start:app` will start the Angular application
+- `start:app` will start the Angular application.
 - `start:simulator` will start the simulator. Because its located in a subdirectory, we need to pass the `--prefix` argument to npm to point it to the `simulator` directory.
 
-Running the `npm start` command from the root should now start our Angular app + starting the local simulator! Do not forget to update your `README.md` file with a sidenote about this behavior.
+Running the `npm start` command from the root should now start our Angular app + start the local simulator! Do not forget to update your `README.md` file with a sidenote about this behavior.
 
 ### Custom handlers
 
-As you might have noticed is that our simulator only returns a single record on an endpoint that could return multiple records. This is fine for some situations, but sometimes you're developing a new feature that incorporates a list of items, or `Posts` in our context. Returning a single `Post` will not help you very much if you want to see how your list is working when multiple items are in it. Think about applying staggered animations on lists, filling the available space etc.
-In this situation the `example` data is not sufficient for our use-case. What we can do is providing specific handlers for our Openapi operations. A simple example for our `Posts` api is this:
+You might have noticed that our simulator only returns a single record on an endpoint that could return multiple records. This is fine for some situations, but sometimes you're developing a new feature that incorporates a list of items, or `Posts` in our context. Returning a single `Post` will not help you very much if you want to see how your list is working when multiple items are in it. Think about applying staggered animations on lists, filling the available space etc.
+In this situation the `example` data is not sufficient for our use case. What we can do is providing specific handlers for our OpenApi operations. A simple example for our `Posts` api is this:
 
 ```ts
 api.register('GetPosts', function (c, req, res) {
@@ -564,7 +565,7 @@ api.register('GetPosts', function (c, req, res) {
 
 You should add this to your `simulator/index.ts` file before `app.init()`.
 
-This way we created our very own response for the endpoint that is described in our api spec file! Great for developing and testing purposes if you ask me!
+This way we created our very own response for the endpoint that is described in our api spec file. Great for developing and testing purposes if you ask me!
 
 Check the docs for more info:
 <https://github.com/anttiviljami/openapi-backend/blob/master/DOCS.md#registeroperationid-handler>
@@ -574,6 +575,6 @@ Check the docs for more info:
 ## Conclusion
 
 The OpenAPI spec is already very helpful to describe your api's. I showed you how I utilize this spec to generate code in our Angular application and generate a simulator that we can use for development purposes.
-What I did not describe is how I use this same simulator to act as an api for my integration tests that I run with [Cypress](https://www.cypress.io/). Another great use-case for your OpenAPI spec!
+What I did not describe is how I use this same simulator to act as an api for my integration tests that I run with [Cypress](https://www.cypress.io/). Another great use case for your OpenAPI spec!
 
 So, what else could you do with it? Let me know!
