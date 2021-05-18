@@ -30,7 +30,7 @@ So what if we could automate these steps to save some precious time 🧐? In a f
 
 ### Create Angular app
 
-First install the Angular CLI if you dont have this installed already:
+First install the Angular CLI if you don't have this installed already:
 
 ```bash
   npm install -g @angular/cli
@@ -121,7 +121,7 @@ I think that this kind of documenting is quite self explanatory, but let's discu
 
 ### Generate Angular Services
 
-We're going to generate our Angular code with the CLI of [openapi-generator](https://github.com/OpenAPITools/openapi-generator-cli). We can install this via npm as devDependency:
+We're going to generate our Angular code with the CLI of [openapi-generator](https://github.com/OpenAPITools/openapi-generator-cli). We can install this via npm as devDependency.
 
 ```bash
   npm i @openapitools/openapi-generator-cli -D
@@ -256,7 +256,7 @@ And we can go one step further by moving the basePath to the Angular environment
 // environment.ts
 export const environment = {
   production: false,
-  basePath: 'https://dev.jsonplaceholder.typicode.com',
+  basePath: 'https://jsonplaceholder.typicode.com',
 };
 ```
 
@@ -355,7 +355,7 @@ OpenAPI Backend has a couple of useful features, but the feature that we're goin
 
 ### Setting up simulator project
 
-The simulator project will be a independent project but within your current directory structure and so it will also be part of your git repo. So actually we're going to create a monorepo: a single repository that contains all our code. I'm an advocate when it comes down to monorepos. If you want to learn more about useful tooling around monorepos, then you certainly should check out the following tools:
+The simulator project will be an independent project but within your current directory structure and so it will also be part of your git repo. So actually we're going to create a monorepo: a single repository that contains all our code. I'm an advocate when it comes down to monorepos. If you want to learn more about useful tooling around monorepos, then you certainly should check out the following tools:
 
 - [Lerna](https://lerna.js.org/) - easy to use, quick to set up.
 - [NX.dev](https://nx.dev/) - managing monorepos like a pro 😉.
@@ -515,7 +515,7 @@ So what's the problem with the repo that we created along this tutorial? As a de
 
 In practice this requires the developer to open two terminal windows/tabs and run the commands. Not a great Developer Experience if you ask me. We can do better!
 
-So let's assume that we want to always run against the simulator in the default configuration, so when running the `npm start` command. We need to be able to start two tasks in parallel. And maybe you're already quite familiar with npm, but there's a package for that called: [npm-run-all](https://www.npmjs.com/package/npm-run-all).
+So let's assume that we always want to run against the simulator in the default configuration, so when running the `npm start` command. We need to be able to start two tasks in parallel. And maybe you're already quite familiar with npm, but there's a package for that called: [npm-run-all](https://www.npmjs.com/package/npm-run-all).
 
 Install it as a `devDependency` in the root of our project:
 
