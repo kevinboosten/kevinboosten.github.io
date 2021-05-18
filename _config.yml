@@ -1,14 +1,14 @@
 # Site
-name: "kevinboosten.dev"
-title: "Kevin Boosten Blog"
-description: "Just writing about front-end development"
+name: 'kevinboosten.dev'
+title: 'Kevin Boosten Blog'
+description: 'Just writing about front-end development'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: ''
 google_analytics: 'UA-77121716-4'
 disqus: kevinboosten
 mailchimp-list:
-include: ["_pages"]
+include: ['_pages']
 permalink: /:title
 
 # Authors
@@ -19,10 +19,10 @@ authors:
     gravatar: ae009796c3ab12724e416d3a2dad9046
     email: kevinboosten@icloud.com
     web: https://kevinboosten.nl
-    twitter: https://twitter.com/Boostuh1
-    github: https://github.com/boosten
-    devto: https://dev.to/boostuh1
-    description: "Front-end developer with a love for Ionic and Firebase"
+    twitter: https://twitter.com/kevinboosten
+    github: https://github.com/kevinboosten
+    devto: https://dev.to/kevinboosten
+    description: 'Front-end developer with a love for Ionic and Firebase'
 
 # Plugins
 plugins:
@@ -31,7 +31,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
-    
+
 # Archives
 jekyll-archives:
   enabled:
@@ -39,11 +39,11 @@ jekyll-archives:
   layout: archive
   permalinks:
     category: '/category/:name/'
-    
-# Pagination 
+
+# Pagination
 paginate: 6
 paginate_path: /page:num/
-    
+
 # Other
 markdown: kramdown
 
@@ -55,6 +55,6 @@ kramdown:
       line_numbers: true
 
 # Lazy Images ("enabled" or "disabled")
-lazyimages: "disabled"
+lazyimages: 'disabled'
 
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

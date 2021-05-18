@@ -24,7 +24,7 @@ I'll show you how to do this in a Azure DevOps multi-stage yml pipeline. So besi
 
 ## Start with an Angular app
 
-The first thing we need is an minimal Angular app. So let's start with that:
+The first thing we need is a minimal Angular app. So let's start with that:
 
 ```bash
 ng new azure-angular-release-demo --minimal --routing=false
