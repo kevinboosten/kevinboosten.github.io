@@ -5,13 +5,13 @@ author: kevin
 categories: ['api', 'angular']
 tags: ['api', 'Angular']
 image: assets/images/posts/2021-02-11/2021-02-11.png
-description: 'If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.'
+description: 'If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with an OpenAPI gateway tremendously.'
 featured: false
 comments: true
 toc: true
 ---
 
-If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with a OpenAPI gateway tremendously.
+If you are working on a project that has an OpenAPI spec, then you can generate your Angular Code and even generate a simulator for development and test purposes. This reduces time and complexity of integrating with an OpenAPI gateway tremendously.
 Let me show you how I use OpenAPI to boost up my productivity!
 
 Here is a brief introduction if you're not familiar with [OpenAPI](https://swagger.io/specification/) in general:
