@@ -383,7 +383,7 @@ Install the required dependencies:
   npm i express # To serve our simulated endpoints
   npm i --save-dev @types/express # typescript types for express
   npm i cors
-  npm i @types/cors
+  npm i --save-dev @types/cors
 ```
 
 As you can see we're using Typescript. We need a `tsconfig.json` file, which you can initialize with the following command:
@@ -425,10 +425,12 @@ We're almost there. Update the npm scripts in your `package.json` so we can buil
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "openapi-backend": "^3.9.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "typescript": "^4.2.3"
   }
