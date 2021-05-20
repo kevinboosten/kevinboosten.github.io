@@ -344,7 +344,7 @@ Another approach could be to publish your generated code as a npm package that c
 
 ## Simulator
 
-Now that we've our Angular services generated, let's have a look at how we can utilize the OpenAPI spec even better in our front-end application stack!
+Now that we've generated our Angular services, let's have a look at how we can utilize the OpenAPI spec even better in our front-end application stack!
 What we're going to use for this is a great package called: [OpenAPI Backend](https://github.com/anttiviljami/openapi-backend) from [Viljami Kuosmanen](https://github.com/anttiviljami).
 
 As Viljami describes it in one sentence:
@@ -401,11 +401,12 @@ Open the generated `tsconfig.json` file and configure the output directory. Your
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "./dist", /* Redirect output structure to the directory. */
-    "strict": true, /* Enable all strict type-checking options. */
-    "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-    "skipLibCheck": true, /* Skip type checking of declaration files. */
+    "outDir": "./dist" /* Redirect output structure to the directory. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  }
 }
 ```
 
