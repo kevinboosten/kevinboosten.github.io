@@ -22,7 +22,7 @@ authors:
     twitter: https://twitter.com/kevinboosten
     github: https://github.com/kevinboosten
     devto: https://dev.to/kevinboosten
-    description: 'Front-end developer with a love for Ionic and Firebase'
+    description: 'Front-end developer with passion for Angular and mobile development with Ionic and Capacitor.'
 
 # Plugins
 plugins:
@@ -40,9 +40,9 @@ jekyll-archives:
   permalinks:
     category: '/category/:name/'
 
-# Pagination
-paginate: 6
-paginate_path: /page:num/
+# Pagination - disabled
+# paginate: 2
+# paginate_path: /page:num/
 
 # Other
 markdown: kramdown

@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Get ready for the launch 🚀"
+title: 'Get ready for the launch 🚀'
 author: kevin
 categories: [personal]
 tags: []
 image: assets/images/posts/2020-05-05.jpg
-description: "Hello, and lets start writing some content!"
-featured: true
+description: 'Hello, and lets start writing some content!'
+featured: false
 comments: true
 ---
 
