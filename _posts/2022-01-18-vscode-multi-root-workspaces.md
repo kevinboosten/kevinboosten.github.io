@@ -5,7 +5,7 @@ author: kevin
 categories: [tools]
 tags: []
 image: assets/images/posts/2022-01-18/2022-01-18.png
-description: 'Switching Node.js versions like a pro!'
+description: 'VSCode Multi-root Workspaces to increase focus and speed up development'
 featured: true
 comments: true
 ---
