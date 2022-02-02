@@ -10,7 +10,7 @@ featured: true
 comments: true
 ---
 
-The other day at work we shared some information about [nvm]() to manage your Node.js installation. My colleague [Joep](https://github.com/JoepKockelkorn) then mentioned a tool I did not know about yet.
+The other day at work we shared some information about [nvm](https://github.com/nvm-sh/nvm) to manage your Node.js installation. My colleague [Joep](https://github.com/JoepKockelkorn) then mentioned a tool I did not know about yet.
 
 Need to switch Node.js version often? Or just want to manage your node installation as a pro? Consider using [Fast Node Manager](https://github.com/Schniz/fnm) 🚀!
 
