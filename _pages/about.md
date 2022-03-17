@@ -15,7 +15,7 @@ comments: false
 </div>
 <div class="col-md-10">
 
-<p>Front-end developer at <a href="https://ilionx.com" target="_blank">ilionx</a></p>
+<p>Front-end developer at <a href="https://kambr.com" target="_blank">Kambr</a></p>
 
 </div>
 </div>
