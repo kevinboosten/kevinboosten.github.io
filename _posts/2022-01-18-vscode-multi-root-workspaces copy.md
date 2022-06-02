@@ -3,7 +3,7 @@ layout: post
 title: 'VSCode Multi-root Workspaces'
 author: kevin
 categories: [tools]
-tags: []
+tags: [vscode]
 image: assets/images/posts/2022-01-18/header.png
 description: 'VSCode Multi-root Workspaces to increase focus and speed up development'
 featured: true
