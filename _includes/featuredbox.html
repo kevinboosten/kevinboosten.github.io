@@ -1,7 +1,7 @@
 <!-- begin post -->
 {% assign author = site.authors[post.author] %}
 
-<div class="col-12 col-md-6 col-lg-4">
+<div class="col-12 col-md-6 col-lg-4 mb-30px">
   <div class="card h-100">
     <a href="{{ site.baseurl }}{{ post.url }}">
       <img class="card-img-top" src="{% if post.image contains "://" %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif
