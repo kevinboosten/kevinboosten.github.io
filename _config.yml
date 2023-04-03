@@ -6,7 +6,7 @@ description: 'Just writing about front-end development'
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/favicon.ico'
 baseurl: ''
-google_analytics: 'UA-77121716-4'
+google_analytics: 'G-HPYB20KYYQ'
 disqus: kevinboosten
 mailchimp-list:
 include: ['_pages']
